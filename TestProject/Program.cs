@@ -16,7 +16,7 @@ namespace TestProject
             var person = new Person { Name = "John", Age = 30 };
             Console.WriteLine(person);
 
-            HelloWorld.SayHello();
+            Console.WriteLine(HelloWorld.SayHello());
 
             Console.Read();
         }

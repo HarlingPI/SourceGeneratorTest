@@ -1,12 +1,9 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
-using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace GeneratorProject
 {
@@ -16,7 +13,7 @@ namespace GeneratorProject
     /// 备注:   此文件通过PIToolKit模板创建
     /// </summary>
     [Generator]
-    public class TestGenerator : IIncrementalGenerator
+    internal class TestGenerator : IIncrementalGenerator
     {
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
@@ -108,10 +105,11 @@ namespace GeneratorProject
             });
 
 
+
             context.RegisterPostInitializationOutput(ctx =>
             {
 
-                var sourceText = """
+                const string sourceText = """
 namespace SourceGeneratorInCSharp
 {
     /// <summary>
@@ -121,16 +119,15 @@ namespace SourceGeneratorInCSharp
     /// </summary>
     public static class HelloWorld
     {
-        public static void SayHello()
+        public static string SayHello()
         {
-            Console.WriteLine("Hello From Generator");
+            return "Hello From Generator";
         }
     }
 }
 """;
-                ctx.AddSource("ExampleGenerator.g", SourceText.From(sourceText, Encoding.UTF8));
+                ctx.AddSource("ExampleGenerator.g.cs", SourceText.From(sourceText, Encoding.UTF8));
             });
         }
     }
-
 }
