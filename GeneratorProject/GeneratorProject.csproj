@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" />
   </ItemGroup>
 
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Release'">
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)Unity\Assets\Plugins\" />
+	</Target>
+
 </Project>
