@@ -140,7 +140,7 @@ namespace SourceGeneratorInCSharp
             var sourceBuilder = new StringBuilder(
             @"
             using System;
-            namespace ExampleSourceGenerated
+            namespace SourceGeneratedTest
             {
                 public static class ExampleSourceGenerated
                 {

@@ -3,29 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using SourceGeneratedTest;
+using SourceGeneratorInCSharp;
 
 
-[InitializeOnLoad]
-public class NewScript 
+namespace Test
 {
-    static NewScript()
+    [InitializeOnLoad]
+    public class NewScript
     {
-        //Debug.Log(SourceGeneratorInCSharp.HelloWorld.SayHello());
+        static NewScript()
+        {
+            Debug.Log(HelloWorld.SayHello());
 
-        var test = new TestClass() { Name = "John", Age = 30 };
-        var str = test.ToString();
-        Debug.Log(str);
+            var test = new TestClass() { Name = "John", Age = 30 };
+            var str = test.ToString();
+            Debug.Log(str);
 
-        Debug.Log(ExampleSourceGenerated.ExampleSourceGenerated.GetTestText());
+            Debug.Log(ExampleSourceGenerated.GetTestText());
+        }
     }
-}
-public class AutoToString : Attribute
-{
-}
-[AutoToString]
-public partial class TestClass
-{
-    public string Name { get; set; }
-    public int Age { get; set; }
+    public class AutoToString : Attribute
+    {
+    }
+    [AutoToString]
+    public partial class TestClass
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+
+    }
 
 }
